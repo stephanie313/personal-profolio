@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yaofei Wu | Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --primary: #1e3a8a;
+      --primary-soft: #dbeafe;
+      --border: #e5e7eb;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    /* ===== Sticky Navigation ===== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 70px;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* ===== Shared Section Styles ===== */
+    section {
+      padding: 4.5rem 0 2.5rem;
+      scroll-margin-top: 90px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 1.8rem;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-wrap {
+      background: linear-gradient(120deg, #dbeafe 0%, #f3f4ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .headline {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.72rem 1.1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(30, 58, 138, 0.25);
+    }
+
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary);
+      border-color: #c7d2fe;
+    }
+
+    .btn-secondary:hover {
+      background: #f8faff;
+    }
+
+    /* ===== Grid Cards ===== */
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem;
+      box-shadow: 0 3px 14px rgba(15, 23, 42, 0.03);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .chip-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.8rem 0;
+    }
+
+    .chip {
+      background: #f3f4f6;
+      color: #374151;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      padding: 0.25rem 0.55rem;
+    }
+
+    .card ul {
+      padding-left: 1rem;
+      color: #374151;
+    }
+
+    .card li {
+      margin-bottom: 0.4rem;
+    }
+
+    /* ===== Skills ===== */
+    .skills-group h3 {
+      margin-bottom: 0.45rem;
+      font-size: 1rem;
+    }
+
+    .skills-list {
+      color: #374151;
+    }
+
+    /* ===== Contact ===== */
+    .contact-box {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 16px;
+      padding: 1.4rem;
+    }
+
+    .contact-links {
+      margin: 0.9rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .contact-links a {
+      color: #c7d2fe;
+      text-decoration: none;
+      border: 1px solid #374151;
+      border-radius: 8px;
+      padding: 0.45rem 0.7rem;
+      transition: 0.2s ease;
+    }
+
+    .contact-links a:hover {
+      background: #1f2937;
+      border-color: #4b5563;
+    }
+
+    footer {
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.9rem;
+      padding: 2.2rem 0 2.6rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== Navigation ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand">Yaofei Wu</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Hero / Home Section ===== -->
+  <header class="hero" id="home">
+    <div class="container hero-wrap">
+      <h1>Yaofei Wu</h1>
+      <p class="headline">Computer/Electrical Engineering Student | AI & Applied Computing Builder</p>
+      <p>
+        I am an engineering student at Green River College focused on building practical AI and software systems.
+        My work spans retrieval-augmented generation pipelines, student-focused tools, and cross-functional team projects
+        where I contribute from interface design to technical integration.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-secondary" href="#contact">Contact Me</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== About Section ===== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <p class="section-subtitle">
+        I am currently pursuing an Associate in Science (AS-T) in Computer/Electrical Engineering at Green River College
+        and plan to transfer as an incoming junior for a Bachelor's in Electrical Engineering in Fall 2026. My interests include
+        AI workflows, data processing pipelines, semantic similarity systems, and engineering problem-solving. I am seeking
+        internships and project opportunities where I can contribute to real-world software or AI-driven solutions while
+        continuing to grow as an engineer.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Projects Section ===== -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        Technical projects and project-style experiences based on coursework, hackathons, and student organization development.
+      </p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Career Exploration Platform (HackSU 2026)</h3>
+          <p class="meta">24-hour hackathon | 3-person team</p>
+          <p>Built an end-to-end career exploration platform that guided users from survey input to AI-supported results.</p>
+          <div class="chip-wrap">
+            <span class="chip">Frontend Development</span>
+            <span class="chip">UI/UX Design</span>
+            <span class="chip">AI Explanations</span>
+            <span class="chip">O*NET Dataset</span>
+          </div>
+          <ul>
+            <li>Led frontend development and designed the survey and results flow.</li>
+            <li>Integrated AI-generated explanations tied to career data.</li>
+            <li>Helped connect interface, AI logic, and backend components into one product.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Gator Guide - Course Matching System</h3>
+          <p class="meta">AI Club multi-module advising prototype</p>
+          <p>Developed a similarity-based pipeline to compare student coursework with university requirement data.</p>
+          <div class="chip-wrap">
+            <span class="chip">Sentence Embeddings</span>
+            <span class="chip">Similarity Scoring</span>
+            <span class="chip">Data Preprocessing</span>
+            <span class="chip">Threshold Tuning</span>
+          </div>
+          <ul>
+            <li>Implemented matching logic using embeddings and similarity scoring.</li>
+            <li>Improved quality by cleaning course descriptions and extracting key terms.</li>
+            <li>Iteratively adjusted thresholds based on observed errors to improve decision accuracy.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>AI-Powered RAG Pipeline (Outamation Externship)</h3>
+          <p class="meta">Remote externship | Aug 2025 - Nov 2025</p>
+          <p>Built and optimized a retrieval workflow for document understanding and chatbot interaction.</p>
+          <div class="chip-wrap">
+            <span class="chip">Python</span>
+            <span class="chip">OCR</span>
+            <span class="chip">Embeddings</span>
+            <span class="chip">FAISS</span>
+          </div>
+          <ul>
+            <li>Developed a full RAG pipeline from document input to retrieval response.</li>
+            <li>Compared model behavior and refined pipeline choices to improve retrieval quality.</li>
+            <li>Built chatbot interaction flow and documented system performance.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience Section ===== -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-subtitle">Work, leadership, and campus roles focused on teaching support, technical collaboration, and operations.</p>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Extern</h3>
+          <p class="meta">Outamation AI Workflow Automation Externship | Aug 2025 - Nov 2025</p>
+          <ul>
+            <li>Developed an AI-powered RAG pipeline using Python, OCR, embeddings, and FAISS.</li>
+            <li>Improved document-retrieval accuracy through model comparison and pipeline optimization.</li>
+            <li>Built a chatbot interface and documented system behavior for team communication.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Biology Lab Assistant</h3>
+          <p class="meta">Green River College Biology Department | Sep 2025 - Present</p>
+          <ul>
+            <li>Prepared lab materials and organized specimens for multiple course sections.</li>
+            <li>Maintained lab safety and cleanliness through equipment sanitation and supply handling.</li>
+            <li>Supported experiment setup and accurate staging of instructional materials.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Math Tutor</h3>
+          <p class="meta">Green River College Math Learning Center | Sep 2025 - Present</p>
+          <ul>
+            <li>Tutor students in calculus and algebra, reinforcing problem-solving and quantitative reasoning.</li>
+            <li>Adapt explanations to diverse learning styles and provide step-by-step problem-solving support.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Vice President</h3>
+          <p class="meta">Green River College AI Club | May 2025 - Present</p>
+          <ul>
+            <li>Co-organized AI initiatives and the campus-wide GatorHacks event.</li>
+            <li>Structured quarterly programming, workshops, and meetings for member engagement.</li>
+            <li>Contributed to the AI/ML team building the "Gator Guide" academic planning prototype.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills Section ===== -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid grid-2">
+        <article class="card skills-group">
+          <h3>Programming</h3>
+          <p class="skills-list">Python, Java</p>
+        </article>
+        <article class="card skills-group">
+          <h3>Tools & Libraries</h3>
+          <p class="skills-list">KeyBERT, Google Colab, Jupyter Notebook</p>
+        </article>
+        <article class="card skills-group">
+          <h3>Concepts</h3>
+          <p class="skills-list">Data processing pipelines, Semantic similarity (embeddings), Retrieval-augmented generation (RAG), Basic circuit concepts, Fault diagnosis</p>
+        </article>
+        <article class="card skills-group">
+          <h3>Productivity Tools</h3>
+          <p class="skills-list">Microsoft Office (Excel, Word), Google Workspace (Docs, Sheets, Forms)</p>
+        </article>
+        <article class="card skills-group">
+          <h3>Languages</h3>
+          <p class="skills-list">Mandarin, English</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education Section ===== -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <article class="card">
+        <h3>Green River College - Auburn, WA</h3>
+        <p class="meta">Associate in Science - Direct Transfer Agreement (AS-T) in Computer/Electrical Engineering | Expected Jun 2026</p>
+        <ul>
+          <li>GPA: 4.00 / 4.00</li>
+          <li>Planned transfer to a Bachelor's in Electrical Engineering as an incoming junior (Fall 2026)</li>
+          <li>Relevant coursework: Calculus I-IV, Engineering Physics I-III, Java, General Chemistry I-II with Lab</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Achievements / Leadership Section ===== -->
+  <section id="achievements">
+    <div class="container">
+      <h2 class="section-title">Achievements & Leadership</h2>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Puget Sound Programming Competition (PSPC)</h3>
+          <p class="meta">University of Washington Tacoma | May 2025</p>
+          <ul>
+            <li>Competed in a 3-person team; placed 1st at the school level and 5th overall.</li>
+            <li>Applied mathematical reasoning and strategic problem-solving under time pressure.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>GatorHacks 2025 - 1st Place</h3>
+          <p class="meta">Auburn, WA | Nov 2025</p>
+          <ul>
+            <li>Improved a CNN workflow for blood cancer cell image classification.</li>
+            <li>Tuned model parameters, evaluated outcomes, and documented behavior with a teammate.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-box">
+        <p>I am open to internships, collaborative projects, and engineering opportunities. Feel free to reach out.</p>
+        <div class="contact-links">
+          <a href="mailto:yaofeiwu.job@gmail.com">yaofeiwu.job@gmail.com</a>
+          <a href="https://github.com/YOUR_GITHUB_USERNAME" target="_blank" rel="noopener noreferrer">GitHub (replace link)</a>
+          <a href="https://www.linkedin.com/in/yao-fei-wu-b80bb5345" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1TeCmKtt3NqUHteX3Fyfyzalp6nTHqfn_/view?usp=sharing" target="_blank" rel="noopener noreferrer">Resume Download</a>
+        </div>
+        <p>Phone: (206) 683-5252 | Location: Auburn, WA</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Yaofei Wu. Built as a single-file portfolio site.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Highlight active navigation link while scrolling
+    const sections = document.querySelectorAll("section, header.hero");
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.getAttribute("id");
+        if (!id) return;
+        navLinks.forEach((link) => {
+          // Mark the nav link whose href matches the current section id (ex: "#projects")
+          link.classList.toggle("active", link.getAttribute("href") === "#" + id);
+        });
+      });
+    }, { threshold: 0.35 });
+
+    sections.forEach((section) => observer.observe(section));
+  </script>
+</body>
+</html>
